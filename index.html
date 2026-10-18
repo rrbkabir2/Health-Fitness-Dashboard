@@ -64,6 +64,7 @@
         <section id="bmi-tool" class="calculator-layout" aria-labelledby="calculator-title">
           <div class="section-title"><div><p class="eyebrow">BODY MASS INDEX</p><h2 id="calculator-title">BMI calculator</h2></div><span class="estimate-pill"><span></span> ESTIMATE</span></div>
           <p class="section-intro">A quick screening measure based on your height and weight. Your result is a starting point for reflection, not a complete picture of your health.</p>
+          <p class="adult-scope"><span aria-hidden="true">i</span> These BMI categories are for adults aged 20 and older. They are not intended for children or teenagers.</p>
 
           <div class="calculator-grid">
             <form id="bmi-form" class="input-card" novalidate>
@@ -92,7 +93,7 @@
               <div id="empty-result" class="result-empty"><div class="empty-illustration" aria-hidden="true"><div class="empty-circle"><span>?</span></div><i class="empty-star star-a">✳</i><i class="empty-star star-b">·</i><i class="empty-dot"></i></div><p>Your result will appear here</p><span>Enter your height and weight to get started.</span></div>
               <div id="calculated-result" class="calculated-result hidden">
                 <div class="bmi-reading"><strong id="bmi-value">—</strong><div class="category-wrap"><span class="category-label">BMI CATEGORY</span><span id="bmi-category" class="category-value">—</span></div></div>
-                <div class="bmi-scale" aria-label="BMI category scale"><div class="scale-track"><span class="scale-segment under"></span><span class="scale-segment healthy"></span><span class="scale-segment over"></span><span class="scale-segment high"></span><span id="scale-marker" class="scale-marker"></span></div><div class="scale-labels"><span>Underweight</span><span>Healthy</span><span>Overweight</span><span>Obesity</span></div><div class="scale-boundaries"><span>18.5</span><span>25</span><span>30</span></div></div>
+                <div class="bmi-scale" role="img" aria-label="Adult BMI scale from 10 to 50. Underweight below 18.5; normal weight 18.5 to 24.9; overweight 25 to 29.9; obesity classes I, II, and III begin at 30, 35, and 40."><div class="scale-track"><span class="scale-segment under"></span><span class="scale-segment normal"></span><span class="scale-segment over"></span><span class="scale-segment class-one"></span><span class="scale-segment class-two"></span><span class="scale-segment class-three"></span><span id="scale-marker" class="scale-marker"></span></div><div class="scale-labels"><span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obesity I</span><span>Obesity II</span><span>Obesity III</span></div><div class="scale-boundaries"><span>18.5</span><span>25</span><span>30</span><span>35</span><span>40</span></div></div>
                 <p id="result-message" class="result-message"></p>
                 <div class="result-note"><span class="note-mark" aria-hidden="true">i</span><p>BMI is one measure among many. It does not distinguish muscle from fat or account for individual differences.</p></div>
               </div>
@@ -100,7 +101,32 @@
               <div class="formula-note"><span class="formula-icon" aria-hidden="true">ƒx</span><p><strong>The formula</strong><br>BMI = weight (kg) ÷ height (m)²</p></div>
             </section>
           </div>
-          <p class="medical-disclaimer"><span aria-hidden="true">✳</span><span><strong>A note on BMI</strong> — Standard adult BMI categories are for screening only. They may not be appropriate for children and teenagers, pregnant people, older adults, or people with higher muscle mass. This tool does not provide a diagnosis. For questions about your health, talk with a qualified health professional.</span></p>
+          <section id="health-info" class="health-info hidden" aria-labelledby="health-info-title">
+            <details id="health-details" class="health-details">
+              <summary class="health-summary" aria-controls="health-content">
+                <span class="health-summary-icon" aria-hidden="true">+</span>
+                <span class="health-summary-copy"><strong id="health-info-title">Health Conditions and Risk Information</strong><small><span id="health-result-category">Your BMI category</span> · Optional health context and general guidance</small></span>
+                <span class="health-summary-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div id="health-content" class="health-content">
+                <p id="health-explanation" class="health-explanation"></p>
+                <div class="health-caution"><span aria-hidden="true">i</span><p>These are possible associations, not predictions or diagnoses. Not everyone in a BMI category will experience these conditions. Individual health depends on more than BMI.</p></div>
+                <div class="health-cards">
+                  <article class="health-card risk-card">
+                    <div class="health-card-heading"><span class="health-card-icon risk-icon" aria-hidden="true">!</span><div><h3>Possible associated risks</h3><p>These conditions may be more common in this BMI category.</p></div></div>
+                    <ul id="possible-risks" class="health-list"></ul>
+                  </article>
+                  <article class="health-card guidance-card">
+                    <div class="health-card-heading"><span class="health-card-icon guidance-icon" aria-hidden="true">↗</span><div><h3>General lifestyle guidance</h3><p>Small, sustainable steps can support overall wellbeing.</p></div></div>
+                    <ul id="lifestyle-guidance" class="health-list"></ul>
+                  </article>
+                </div>
+                <div class="health-consult"><span class="consult-icon" aria-hidden="true">✳</span><p><strong>When to talk with a healthcare professional</strong><br><span id="health-consult"></span></p></div>
+                <p class="health-sources">Learn more: <a href="https://publications.iarc.who.int/uploads/media/publication_inline/0001/02/82d18313a09991bbf4135a18f9472379ed1f99d1.pdf" target="_blank" rel="noopener noreferrer">WHO BMI classification</a>, <a href="https://www.cdc.gov/bmi/about/" target="_blank" rel="noopener noreferrer">CDC: BMI as a screening measure</a>, <a href="https://www.cdc.gov/obesity/php/about/consequences.html" target="_blank" rel="noopener noreferrer">CDC: possible obesity-related conditions</a>, and <a href="https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/healthy-ways-to-gain-weight/" target="_blank" rel="noopener noreferrer">NHS: underweight and health</a>.</p>
+              </div>
+            </details>
+          </section>
+          <p class="medical-disclaimer"><span aria-hidden="true">✳</span><span><strong>Important medical note</strong> — BMI is a screening tool, not a medical diagnosis. This calculator does not confirm that you have a disease. Individual health risks also depend on factors such as age, medical history, waist circumference, and lifestyle. Not everyone in a category will experience the conditions listed. These categories are intended for adults aged 20 and older; a different assessment may be needed for younger people, during pregnancy, or in some other health situations.</span></p>
         </section>
         <footer class="page-footer"><span>Made for progress, not perfection.</span><span>YOUR WELLNESS JOURNEY IS YOURS.</span></footer>
       </main>

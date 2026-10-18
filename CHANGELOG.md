@@ -6,3 +6,5 @@
 - Added pure calculation helpers and focused Node tests for BMI, adult category boundaries, imperial conversions, and invalid helper inputs.
 - Added a project README with setup, testing, formulas, privacy information, screenshot placeholders, and the current roadmap.
 - Verified the local HTTP server and BMI interface in headless Chrome, including metric and imperial calculations and in-page navigation.
+- Added six adult BMI classes with expandable category-specific risk information, lifestyle guidance, professional-care prompts, and stronger medical caveats.
+- Verified category boundaries, displayed result alignment, disclosure behavior, reset behavior, and responsive layouts.

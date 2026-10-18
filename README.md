@@ -14,13 +14,15 @@ Wellframe is a small, browser-based health and fitness project. It is being buil
 
 - BMI calculator with metric and imperial height and weight inputs.
 - Input checks for missing, nonnumeric, zero, negative, and unrealistic values.
-- BMI result shown to two decimal places, with an adult category and visual scale.
+- BMI result shown to two decimal places, with six adult categories and a visual scale.
+- Expandable, category-specific health information with possible risk associations, general lifestyle ideas, and guidance on when to contact a healthcare professional.
+- Clear reminders that categories are intended for adults aged 20+ and risk information is not a diagnosis or a prediction.
 - Reset button, formula explanation, and health disclaimer.
 - Responsive dashboard layout with in-page Overview and Calculators navigation.
 - Empty result state before a calculation is made.
 - Calculation helper tests for BMI, category boundaries, unit conversion, and invalid values.
 
-The BMI scale is a visual guide covering BMI values from 10 to 40. The marker stops at the ends of the scale for values outside that range.
+The BMI scale is a visual guide covering BMI values from 10 to 50. The marker stops at the ends of the scale for values outside that range.
 
 ## Technologies
 
@@ -96,14 +98,15 @@ node --check js/calculators.js
 
 ### Manual browser checks
 
-1. Open the local site and confirm the result card starts in its empty state.
+1. Open the local site and confirm the result card starts in its empty state and the health information section is hidden.
 2. Use the Overview and Calculators links and confirm each moves to its page section.
 3. In metric mode, enter height `170` cm and weight `68` kg. Select **Calculate my BMI**. The result should be `23.53` and the category should be **Healthy weight**.
 4. Select `ft / in` and `lb`. Enter `5` feet, `7` inches, and `150` pounds. The result should be `23.49`.
 5. Try submitting with a field empty, then try zero or an unrealistic measurement. A clear validation message should appear.
 6. Select **Reset**. The inputs should clear, the units should return to cm and kg, and the result should return to its empty state.
+7. After calculating, expand **Health Conditions and Risk Information**. Confirm the explanation, possible risks, lifestyle guidance, and consultation note match the displayed category. Reset and calculate again to check another category. Try values that produce BMI 17, 22, 27, 32, 37, and 42 to cover all six categories.
 
-The current version has been checked in headless Chrome for the empty state, Overview and Calculators navigation, both example BMI results, and JavaScript exceptions. The automated test command above checks calculation helpers; it does not drive the browser UI.
+The current version has been checked in headless Chrome for all six categories, category-specific risk information, expand/collapse, reset behavior, and mobile/desktop layouts. The automated test command checks calculation helpers; it does not drive the browser UI.
 
 ## BMI formula and categories
 
@@ -122,16 +125,20 @@ kilograms = pounds * 0.45359237
 centimeters = (feet * 12 + inches) * 2.54
 ```
 
-Then it uses the same BMI formula. Standard adult screening categories in this app are:
+Then it uses the same BMI formula. The calculator classifies the rounded, displayed BMI using these adult screening categories:
 
 | BMI | Category |
 | --- | --- |
 | Below 18.5 | Underweight |
-| 18.5 to below 25 | Healthy weight |
+| 18.5 to below 25 | Normal weight |
 | 25 to below 30 | Overweight |
-| 30 or higher | Obesity |
+| 30 to below 35 | Obesity Class I |
+| 35 to below 40 | Obesity Class II |
+| 40 or higher | Obesity Class III |
 
-These categories are screening ranges for adults. They are not appropriate for every person and are not designed for children and teenagers. BMI does not distinguish muscle from fat or account for every individual difference. This project does not provide medical advice or a diagnosis.
+The category bands follow the international adult BMI classification. This interface is intended only for adults aged 20 and older. The category health risks are possible associations, not predictions. Weight-related risks generally increase across obesity classes, but people in the same category can have different risks. BMI does not distinguish muscle from fat or show where weight is carried. Individual health also depends on age, medical history, waist circumference, and lifestyle. A normal BMI does not guarantee good health. The tool does not diagnose disease or provide medical advice.
+
+Health information is summarized from public health references: [WHO BMI classification](https://publications.iarc.who.int/uploads/media/publication_inline/0001/02/82d18313a09991bbf4135a18f9472379ed1f99d1.pdf), [CDC BMI screening guidance](https://www.cdc.gov/bmi/about/), [CDC information on possible obesity-related conditions](https://www.cdc.gov/obesity/php/about/consequences.html), and [NHS underweight guidance](https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/healthy-ways-to-gain-weight/).
 
 ## Privacy and data
 

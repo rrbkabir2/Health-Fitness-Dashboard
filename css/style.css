@@ -12,3 +12,72 @@
 .scale-boundaries span:nth-child(1){left:28.33%}
 .scale-boundaries span:nth-child(2){left:50%}
 .scale-boundaries span:nth-child(3){left:66.67%}
+
+/* Expandable BMI health context */
+.adult-scope{display:flex;align-items:flex-start;gap:8px;margin:-8px 0 16px;color:#78867c;font-size:10px;line-height:1.5}
+.adult-scope>span,.health-caution>span{display:grid;place-items:center;flex:none;width:15px;height:15px;border:1px solid #a7b8a6;border-radius:50%;color:#66806a;font:600 9px Georgia,serif}
+.health-info{margin-top:16px}
+.health-details{overflow:hidden;border:1px solid #e1e9e0;border-radius:10px;background:#fff;box-shadow:var(--shadow)}
+.health-summary{display:flex;align-items:center;gap:12px;min-height:68px;padding:13px 17px;cursor:pointer;list-style:none}
+.health-summary::-webkit-details-marker{display:none}
+.health-summary:focus-visible{outline:3px solid #8bb49a;outline-offset:-3px}
+.health-summary-icon{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:10px;background:#edf4ed;color:#5d8062;font-size:18px}
+.health-summary-copy{display:grid;gap:3px;min-width:0}
+.health-summary-copy strong{color:#31453a;font:650 13px Manrope,sans-serif}
+.health-summary-copy small{color:#87938a;font-size:9px}
+.health-summary-toggle{display:grid;place-items:center;flex:none;margin-left:auto;width:27px;height:27px;border:1px solid #e5ebe3;border-radius:50%;color:#5f8064;font-size:17px;transition:transform .15s}
+.health-details[open] .health-summary-toggle{transform:rotate(45deg)}
+.health-content{padding:0 18px 17px;border-top:1px solid #edf0eb}
+.health-explanation{margin:15px 0 12px;color:#4f6055;font-size:12px;line-height:1.65}
+.health-caution{display:flex;align-items:flex-start;gap:9px;padding:10px 11px;border:1px solid #eee9d9;border-radius:7px;background:#fbfaf5}
+.health-caution>span{border-color:#d9c99b;color:#987c3b}
+.health-caution p{margin:0;color:#776f5d;font-size:10px;line-height:1.55}
+.health-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.health-card{min-width:0;padding:14px;border:1px solid #e9ede7;border-radius:8px;background:#fcfdfb}
+.health-card-heading{display:flex;align-items:flex-start;gap:10px}
+.health-card-icon{display:grid;place-items:center;flex:none;width:27px;height:27px;border-radius:8px;font-weight:700;font-size:13px}
+.risk-icon{background:#f7efeb;color:#a56b58}
+.guidance-icon{background:#edf4ed;color:#5b8060}
+.health-card-heading h3{margin:1px 0 3px;color:#44554a;font:650 11px Manrope,sans-serif}
+.health-card-heading p{margin:0;color:#929b93;font-size:9px;line-height:1.45}
+.health-list{display:grid;gap:7px;margin:13px 0 0;padding:0;list-style:none}
+.health-list li{position:relative;padding-left:14px;color:#6d7a70;font-size:10px;line-height:1.5}
+.health-list li::before{position:absolute;top:0;left:1px;color:#8da58d;content:"•"}
+.risk-card .health-list li::before{color:#bd907b}
+.health-consult{display:flex;align-items:flex-start;gap:10px;margin-top:12px;padding:12px;border-radius:7px;background:#f1f5ef}
+.consult-icon{color:#759078;font-size:13px}
+.health-consult p{margin:0;color:#728076;font-size:10px;line-height:1.6}
+.health-consult strong{color:#506354;font-size:10px}
+.health-sources{margin:12px 0 0;color:#929b93;font-size:9px;line-height:1.7}
+.health-sources a{color:#55765a;text-underline-offset:2px}
+.health-sources a:hover{color:#315a45}
+@media(max-width:620px){
+  .health-summary{gap:9px;padding:12px}
+  .health-summary-copy strong{font-size:11px}
+  .health-summary-copy small{font-size:8px}
+  .health-content{padding:0 12px 13px}
+  .health-cards{grid-template-columns:1fr}
+  .health-card{padding:12px}
+}
+
+/* Six-category adult BMI scale: values 10 to 50 with cutoffs at 18.5, 25, 30, 35, and 40. */
+.scale-segment.under{width:21.25%;background:#a9bdcc}
+.scale-segment.normal{width:16.25%;background:#9bb99a}
+.scale-segment.over{width:12.5%;background:#e4c27d}
+.scale-segment.class-one{width:12.5%;background:#d9ad83}
+.scale-segment.class-two{width:12.5%;background:#d69c88}
+.scale-segment.class-three{width:25%;background:#c88279}
+.scale-labels{height:16px}
+.scale-labels span{width:54px;font-size:6px;line-height:1.2;text-align:center}
+.scale-labels span:nth-child(1){left:10.625%}
+.scale-labels span:nth-child(2){left:29.375%}
+.scale-labels span:nth-child(3){left:43.75%}
+.scale-labels span:nth-child(4){left:56.25%}
+.scale-labels span:nth-child(5){left:68.75%}
+.scale-labels span:nth-child(6){left:87.5%}
+.scale-boundaries{top:24px}
+.scale-boundaries span:nth-child(1){left:21.25%}
+.scale-boundaries span:nth-child(2){left:37.5%}
+.scale-boundaries span:nth-child(3){left:50%}
+.scale-boundaries span:nth-child(4){left:62.5%}
+.scale-boundaries span:nth-child(5){left:75%}

@@ -10,6 +10,8 @@ const bmiValue = document.querySelector("#bmi-value");
 const bmiCategory = document.querySelector("#bmi-category");
 const resultMessage = document.querySelector("#result-message");
 const scaleMarker = document.querySelector("#scale-marker");
+const healthInfo = document.querySelector("#health-info");
+const healthDetails = document.querySelector("#health-details");
 const { calculateBmi, feetAndInchesToCentimeters, getBmiCategory, poundsToKilograms } = window.WellframeCalculators;
 
 const selectedUnits = { height: "cm", weight: "kg" };
@@ -85,6 +87,26 @@ function clearError() {
   formError.textContent = "";
 }
 
+function fillList(listId, items) {
+  const list = document.getElementById(listId);
+  list.replaceChildren();
+  items.forEach((item) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = item;
+    list.append(listItem);
+  });
+}
+
+function showHealthInformation(category) {
+  document.querySelector("#health-result-category").textContent = category.label;
+  document.querySelector("#health-explanation").textContent = category.explanation;
+  fillList("possible-risks", category.risks);
+  fillList("lifestyle-guidance", category.lifestyle);
+  document.querySelector("#health-consult").textContent = category.consult;
+  healthDetails.open = false;
+  healthInfo.classList.remove("hidden");
+}
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   clearError();
@@ -94,11 +116,12 @@ form.addEventListener("submit", (event) => {
     const bmi = calculateBmi(weightKg, heightCm);
     if (!Number.isFinite(bmi) || bmi <= 0) throw new Error("Those measurements could not be calculated. Please check your entries.");
     const category = getBmiCategory(bmi);
-    bmiValue.textContent = bmi.toFixed(2);
+    bmiValue.textContent = category.bmi.toFixed(2);
     bmiCategory.textContent = category.label;
-    resultMessage.textContent = category.message;
-    // Map the visible 10–40 BMI range across the scale; values beyond it rest at an endpoint.
-    scaleMarker.style.left = `${Math.max(0, Math.min(100, ((bmi - 10) / 30) * 100))}%`;
+    resultMessage.textContent = category.explanation;
+    showHealthInformation(category);
+    // Map the visible 10–50 BMI range across the six-category scale; clamp outside it.
+    scaleMarker.style.left = `${Math.max(0, Math.min(100, ((bmi - 10) / 40) * 100))}%`;
     emptyResult.classList.add("hidden");
     calculatedResult.classList.remove("hidden");
   } catch (error) {
@@ -112,6 +135,7 @@ form.addEventListener("reset", () => {
     setUnit("weight", "kg");
     clearError();
     calculatedResult.classList.add("hidden");
+    healthInfo.classList.add("hidden");
     emptyResult.classList.remove("hidden");
   });
 });
